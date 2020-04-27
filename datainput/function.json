@@ -12,6 +12,13 @@
       ]
     },
     {
+      "name": "storageOut",
+      "type": "table",
+      "tableName": "records",
+      "connection": "AzureWebJobsStorage",
+      "direction": "out"
+    },
+    {
       "type": "http",
       "direction": "out",
       "name": "$return"
