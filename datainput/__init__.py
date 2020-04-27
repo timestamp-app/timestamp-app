@@ -1,13 +1,14 @@
 import logging
 import json
-import uuid
-import datetime
 
 import azure.functions as func
 
+from uuid import uuid4
+from datetime import datetime
+
 
 def main(req: func.HttpRequest, storageOut: func.Out[str]) -> func.HttpResponse:
-    logging.info('Python HTTP trigger function processed a request.')
+    logging.info('Function processed a request.')
 
     # Get Input
     try:
@@ -18,8 +19,10 @@ def main(req: func.HttpRequest, storageOut: func.Out[str]) -> func.HttpResponse:
 
     # Write input
     try:
-        req_body["PartitionKey"] = str(datetime.date.today().year)
-        req_body["RowKey"] = str(uuid.uuid4())
+        req_body["PartitionKey"] = str(datetime.today().year)
+        req_body["RowKey"] = str(uuid4())
+        # Change the datetime format from IFTTT to ISO 
+        req_body["time"] = datetime.strptime(req_body["time"], "%B %d, %Y at %I:%M%p").isoformat()
 
         storageOut.set(json.dumps(req_body))
     except:
