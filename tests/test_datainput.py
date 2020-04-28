@@ -12,8 +12,11 @@ class TestFunction(unittest.TestCase):
             url='/api/datainput',
             params={})
 
+        # Mock storage account
+        storageOut = func.Out
+
         # Call the function.
-        resp = main(req)
+        resp = main(req, storageOut)
 
         # Check the output.
         self.assertEqual(
