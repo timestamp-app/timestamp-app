@@ -12,7 +12,9 @@ def format_input(data):
     data["PartitionKey"] = str(datetime.today().year)
     data["RowKey"] = str(uuid4())
 
-    # Change the datetime format from IFTTT to ISO 
+    # Change the datetime format from IFTTT to ISO
+    ## For some reason azure tables will reformat the date on their end.
+    ## This happens even if I pass it to them as a string.
     ifttt_time_fmt = "%B %d, %Y at %I:%M%p"
     data["time"] = datetime.strptime(data["time"], ifttt_time_fmt).isoformat()
 
