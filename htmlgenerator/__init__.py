@@ -3,6 +3,8 @@ import json
 
 import azure.functions as func
 
+from . import generator
+
 
 def main(req: func.HttpRequest, recordsJSON):
     logging.info('HTML Generator function processed a request.')
@@ -12,7 +14,5 @@ def main(req: func.HttpRequest, recordsJSON):
     except:
         logging.error('Error reading records.')
 
-    try:
-        pass
-    except:
-        pass
+    gen = generator.generator(records)
+    gen.make_html()
