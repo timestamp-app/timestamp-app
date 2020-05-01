@@ -16,9 +16,9 @@ class generator():
     def make_plots(self):
         self.date_plot()
 
-    def make_html(self):
+    def make_html(self, working_directory):
         """Creates a html file from a j2 template"""
-        file_loader = FileSystemLoader("htmlgenerator/templates")
+        file_loader = FileSystemLoader(working_directory + "/templates")
         env = Environment(loader=file_loader)
         template = env.get_template("template.html.j2")
         return template.render(plot=self.date_plot)
