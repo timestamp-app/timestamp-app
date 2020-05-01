@@ -4,18 +4,24 @@ import plotly.graph_objs as go
 import pandas as pd
 
 class generator():
+
+    date_plot = ""
+
     def __init__(self, data):
         df = pd.DataFrame(data)
         df['time'] = pd.to_datetime(df['time'], format="%Y/%m/%d %H:%M")
 
         self.df = df
 
+    def make_plots(self):
+        self.date_plot()
+
     def make_html(self):
         """Creates a html file from a j2 template"""
         file_loader = FileSystemLoader("htmlgenerator/templates")
         env = Environment(loader=file_loader)
         template = env.get_template("template.html.j2")
-        return template.render(plot="a plot")
+        return template.render(plot=self.date_plot)
         
 
     def date_plot(self):
@@ -25,4 +31,4 @@ class generator():
 
         bar = go.Bar(x=counts.index, y=counts.values)
 
-        return plot([bar], output_type="div")
+        self.date_plot =  plot([bar], output_type="div")

@@ -15,4 +15,8 @@ def main(req: func.HttpRequest, recordsJSON):
         logging.error('Error reading records.')
 
     gen = generator.generator(records)
-    gen.make_html()
+    gen.make_plots()
+    html = gen.make_html()
+
+    with open('test.html', 'w') as f:
+        f.write(html)
