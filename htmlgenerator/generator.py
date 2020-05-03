@@ -9,6 +9,7 @@ class generator():
     df = ""
     date_line_html = ""
     month_line_html = ""
+    year_line_html = ""
 
     def __init__(self, data):
         self.df = pd.DataFrame(data)
@@ -20,6 +21,7 @@ class generator():
     def make_plots(self):
         self.date_line_plot()
         self.month_line_plot()
+        self.year_line_plot()
 
     def make_html(self, working_directory):
         """Creates a html file from a j2 template"""
@@ -28,7 +30,8 @@ class generator():
         template = env.get_template("template.html.j2")
         return template.render(
             date_line_html=self.date_line_html,
-            month_line_html=self.month_line_html
+            month_line_html=self.month_line_html,
+            year_line_html=self.year_line_html
             )
         
     def _line_plot(self, data):
@@ -49,14 +52,23 @@ class generator():
 
     def date_line_plot(self):
         data = copy.deepcopy(self.df)
-        data['time'] = data['time'].dt.date
-        counts = data['time'].value_counts().sort_index()
+        date = data['time'].dt.date
+        counts = date.value_counts().sort_index()
 
         self.date_line_html =  self._line_plot(counts)
 
     def month_line_plot(self):
         data = copy.deepcopy(self.df)
-        data['time'] = data['time'].dt.month
-        counts = data['time'].value_counts().sort_index()
+        time = data['time']
+        counts = time.value_counts()
+        counts = counts.resample('M').sum()
 
         self.month_line_html =  self._line_plot(counts)
+
+    def year_line_plot(self):
+        data = copy.deepcopy(self.df)
+        time = data['time']
+        counts = time.value_counts()
+        counts = counts.resample('Y').sum()
+
+        self.year_line_html =  self._line_plot(counts)
