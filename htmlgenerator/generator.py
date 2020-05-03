@@ -9,6 +9,7 @@ class generator():
     date_count_html = ""
     month_count_html = ""
     year_count_html = ""
+    map_html = ""
 
     def __init__(self, data):
         self.df = pd.DataFrame(data)
@@ -21,6 +22,7 @@ class generator():
         self.date_count_plot()
         self.month_count_plot()
         self.year_count_plot()
+        self.map_count_plot()
 
     def make_html(self, working_directory):
         """Creates a html file from a j2 template"""
@@ -30,7 +32,8 @@ class generator():
         return template.render(
             date_count_html=self.date_count_html,
             month_count_html=self.month_count_html,
-            year_count_html=self.year_count_html
+            year_count_html=self.year_count_html,
+            map_html = self.map_html
             )
         
     def line_plot(self, data):
@@ -65,6 +68,16 @@ class generator():
         )
         return plot(fig, output_type="div")
 
+    def map_plot(self, data):
+
+        scatter = go.Scattergeo(
+            lon = data['long'],
+            lat = data['lat'],
+            mode = 'markers'
+            )
+        fig = go.Figure(data=scatter)
+        return plot(fig, output_type="div")
+
     def date_count_plot(self):
         data = copy.deepcopy(self.df)
         date = data['time'].dt.date
@@ -87,3 +100,8 @@ class generator():
         counts = counts.resample('Y').sum()
 
         self.year_count_html = self.bar_plot(counts)
+
+    def map_count_plot(self):
+        data = copy.deepcopy(self.df)
+
+        self.map_html = self.map_plot(data)
