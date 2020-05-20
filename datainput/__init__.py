@@ -1,3 +1,6 @@
+"""
+This module is responsible for ingesting data and writing it to storage
+"""
 import json
 import logging
 import os
@@ -45,7 +48,7 @@ def push_notification(code, message):
         }
         requests.get(wirepusher_url, params=payload)
     except requests.exceptions.HTTPError as err:
-        logging.error("Request Failed: Invalid response code from wirepusher: " + err.response)
+        logging.error("Request Failed: Invalid response code from wirepusher: %s", err)
     except:
         logging.error("Request Failed: Couldnt trigger wirepusher")
 
@@ -62,6 +65,7 @@ def handle_error(message, code=500):
     return func.HttpResponse(message, status_code=code)
 
 
+# pylint: disable=E1136
 def main(req: func.HttpRequest, storage_out: func.Out[str]) -> func.HttpResponse:
     """
     This function takes in a http request, formats the data, and writes it to storage
@@ -96,9 +100,7 @@ def main(req: func.HttpRequest, storage_out: func.Out[str]) -> func.HttpResponse
         payload = {'code': os.getenv("HTMLGENERATOR_KEY")}
         requests.get(gen_url, params=payload)
     except requests.exceptions.HTTPError as err:
-        return handle_error(
-            "Request Failed: Invalid response code from html generator: " + err.response
-        )
+        return handle_error("Request Failed: Invalid response code from html generator: %s", err)
     except:
         return handle_error("Request Failed: Couldnt trigger html generator")
 
