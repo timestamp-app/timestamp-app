@@ -1,6 +1,6 @@
 .PHONY: lint
 lint:
-
+	pylint datainput htmlgenerator
 
 .PHONY: test
 test:
