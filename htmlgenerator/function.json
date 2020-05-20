@@ -2,7 +2,7 @@
   "scriptFile": "__init__.py",
   "bindings": [
     {
-      "name": "recordsJSON",
+      "name": "records_json",
       "type": "table",
       "tableName": "records",
       "connection": "AzureWebJobsStorage",
