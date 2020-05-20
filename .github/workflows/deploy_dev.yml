@@ -12,7 +12,7 @@ env:
   PYTHON_VERSION: '3.8'
 
 jobs:
-  build-and-deploy:
+  build-and-deploy-dev:
     runs-on: ubuntu-latest
     steps:
     - name: 'Checkout GitHub Action'
