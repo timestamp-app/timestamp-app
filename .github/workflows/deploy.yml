@@ -2,8 +2,9 @@
 name: Deploy Dev
 
 on:
-  - push:
-      branch: dev
+  push:
+    branches:
+    - dev
 
 env:
   AZURE_FUNCTIONAPP_NAME: devduck
