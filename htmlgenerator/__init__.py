@@ -12,6 +12,7 @@ from azure.storage.blob import BlobServiceClient, ContentSettings
 from . import generator
 
 
+# pylint: disable=W0702
 def main(records_json, context: func.Context):
     """
     This function reads the data from the table and converts it into a html page

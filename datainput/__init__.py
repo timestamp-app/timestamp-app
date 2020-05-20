@@ -31,6 +31,7 @@ def format_input(data):
     return data
 
 
+# pylint: disable=W0702
 def push_notification(code, message):
     """
     This function sends push notifications to a android device
@@ -65,7 +66,7 @@ def handle_error(message, code=500):
     return func.HttpResponse(message, status_code=code)
 
 
-# pylint: disable=E1136
+# pylint: disable=E1136,W0702
 def main(req: func.HttpRequest, storage_out: func.Out[str]) -> func.HttpResponse:
     """
     This function takes in a http request, formats the data, and writes it to storage
