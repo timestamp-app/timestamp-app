@@ -1,15 +1,19 @@
-import os
-import requests
-import logging
 import json
+import logging
+import os
+from datetime import datetime
+from uuid import uuid4
 
 import azure.functions as func
-
-from uuid import uuid4
-from datetime import datetime
+import requests
 
 
 def format_input(data):
+    """
+    This function formats the input data to be written into th table
+    :param data:
+    :return:
+    """
     # Add azure info
     data["PartitionKey"] = str(datetime.today().year)
     data["RowKey"] = str(uuid4())
@@ -25,6 +29,12 @@ def format_input(data):
 
 
 def push_notification(code, message):
+    """
+    This function sends push notifications to a android device
+    :param code:
+    :param message:
+    :return:
+    """
     try:
         wirepusher_url = 'https://wirepusher.com/send'
         payload = {
@@ -32,21 +42,33 @@ def push_notification(code, message):
             'title': 'Timestamp ' + code,
             'message': message,
             'type': code
-            } 
+        }
         requests.get(wirepusher_url, params=payload)
-    except requests.exceptions.HTTPError as e:
-        logging.error("Request Failed: Invalid response code from wirepusher: " + e.response)
+    except requests.exceptions.HTTPError as err:
+        logging.error("Request Failed: Invalid response code from wirepusher: " + err.response)
     except:
         logging.error("Request Failed: Couldnt trigger wirepusher")
 
 
 def handle_error(message, code=500):
+    """
+    This function logs errors and sends a notification
+    :param message:
+    :param code:
+    :return:
+    """
     logging.error(message)
     push_notification("Error", message)
     return func.HttpResponse(message, status_code=code)
 
 
-def main(req: func.HttpRequest, storageOut: func.Out[str]) -> func.HttpResponse:
+def main(req: func.HttpRequest, storage_out: func.Out[str]) -> func.HttpResponse:
+    """
+    This function takes in a http request, formats the data, and writes it to storage
+    :param req:
+    :param storage_out:
+    :return:
+    """
     logging.info('Function processed a request.')
 
     # Get Input
@@ -64,7 +86,7 @@ def main(req: func.HttpRequest, storageOut: func.Out[str]) -> func.HttpResponse:
 
     # Write input
     try:
-        storageOut.set(json.dumps(req_body))
+        storage_out.set(json.dumps(req_body))
     except:
         return handle_error('Request Failed: Could not write to storage.')
 
@@ -73,8 +95,10 @@ def main(req: func.HttpRequest, storageOut: func.Out[str]) -> func.HttpResponse:
         gen_url = 'https://' + os.getenv("WEBSITE_HOSTNAME") + '/api/htmlgenerator'
         payload = {'code': os.getenv("HTMLGENERATOR_KEY")}
         requests.get(gen_url, params=payload)
-    except requests.exceptions.HTTPError as e:
-        return handle_error("Request Failed: Invalid response code from html generator: " + e.response)
+    except requests.exceptions.HTTPError as err:
+        return handle_error(
+            "Request Failed: Invalid response code from html generator: " + err.response
+        )
     except:
         return handle_error("Request Failed: Couldnt trigger html generator")
 
