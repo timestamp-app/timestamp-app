@@ -7,6 +7,7 @@ from datainput import main, format_input
 from freezegun import freeze_time
 from mock import patch
 
+
 class TestMain(unittest.TestCase):
     
     # Tried mocking the azure table storage but was unable to
@@ -23,13 +24,14 @@ class TestMain(unittest.TestCase):
         # Assert
         self.assertEqual(resp.get_body(), b'Requires JSON input')
 
+
 class TestFormatInput(unittest.TestCase):
 
     @patch('datainput.uuid4', return_value='1f83f6a2-3841-45da-8129-98de28ce7b74')
     @freeze_time("2012-01-01")
     def test_ifttt_format(self, uuid4):
         # Input
-        with open(file='tests/mock_input.json') as f:
+        with open(file='test/mock_input.json') as f:
             raw_input = f.read()
         
         input_data = json.loads(raw_input)
