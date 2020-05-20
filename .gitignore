@@ -131,3 +131,4 @@ local.settings.json
 
 # Dev stuff
 *.ipynb
+.idea
