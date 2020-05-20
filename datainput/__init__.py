@@ -23,6 +23,7 @@ def format_input(data):
 
     return data
 
+
 def push_notification(code, message):
     try:
         wirepusher_url = 'https://wirepusher.com/send'
@@ -38,10 +39,12 @@ def push_notification(code, message):
     except:
         logging.error("Request Failed: Couldnt trigger wirepusher")
 
+
 def handle_error(message, code=500):
     logging.error(message)
     push_notification("Error", message)
     return func.HttpResponse(message, status_code=code)
+
 
 def main(req: func.HttpRequest, storageOut: func.Out[str]) -> func.HttpResponse:
     logging.info('Function processed a request.')
