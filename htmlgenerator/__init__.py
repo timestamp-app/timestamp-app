@@ -30,7 +30,7 @@ def main(records_json, context: func.Context):
     try:
         working_directory = context.function_directory
 
-        gen = generator.generator(records)
+        gen = generator.Generator(records)
         gen.make_plots()
         html = gen.make_html(working_directory)
     except:
