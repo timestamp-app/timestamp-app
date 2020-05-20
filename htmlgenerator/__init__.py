@@ -1,6 +1,10 @@
-import os
-import logging
+"""
+This module is responsible for generating a static website from the data in the table
+"""
+
 import json
+import logging
+import os
 
 import azure.functions as func
 from azure.storage.blob import BlobServiceClient, ContentSettings
@@ -8,11 +12,17 @@ from azure.storage.blob import BlobServiceClient, ContentSettings
 from . import generator
 
 
-def main(req: func.HttpRequest, recordsJSON, context: func.Context):
+def main(records_json, context: func.Context):
+    """
+    This function reads the data from the table and converts it into a html page
+    :param records_json:
+    :param context:
+    :return:
+    """
     logging.info('HTML Generator function processed a request.')
 
     try:
-        records = json.loads(recordsJSON)
+        records = json.loads(records_json)
     except:
         logging.error('Error reading records.')
         return func.HttpResponse("Error reading records", status_code=500)
