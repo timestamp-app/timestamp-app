@@ -10,6 +10,7 @@ from uuid import uuid4
 import azure.functions as func
 import requests
 
+from helpers.error_handling import handle_error
 from helpers.notifications import push_notification
 
 
@@ -31,18 +32,6 @@ def format_input(data):
     data["time"] = datetime_obj.strftime(prefered_time_fmt)
 
     return data
-
-
-def handle_error(message, code=500):
-    """
-    This function logs errors and sends a notification
-    :param message:
-    :param code:
-    :return:
-    """
-    logging.error(message)
-    push_notification("Error", message)
-    return func.HttpResponse(message, status_code=code)
 
 
 # pylint: disable=E1136,W0702
