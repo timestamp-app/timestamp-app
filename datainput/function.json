@@ -11,7 +11,7 @@
       ]
     },
     {
-      "name": "storageOut",
+      "name": "storage_out",
       "type": "table",
       "tableName": "records",
       "connection": "AzureWebJobsStorage",
