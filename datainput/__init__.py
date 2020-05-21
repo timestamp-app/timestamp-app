@@ -67,11 +67,11 @@ def handle_error(message, code=500):
 
 
 # pylint: disable=E1136,W0702
-def main(req: func.HttpRequest, storage_out: func.Out[str]) -> func.HttpResponse:
+def main(req: func.HttpRequest, storageout: func.Out[str]) -> func.HttpResponse:
     """
     This function takes in a http request, formats the data, and writes it to storage
     :param req:
-    :param storage_out:
+    :param storageout:
     :return:
     """
     logging.info('Function processed a request.')
@@ -91,7 +91,7 @@ def main(req: func.HttpRequest, storage_out: func.Out[str]) -> func.HttpResponse
 
     # Write input
     try:
-        storage_out.set(json.dumps(req_body))
+        storageout.set(json.dumps(req_body))
     except:
         return handle_error('Request Failed: Could not write to storage.')
 

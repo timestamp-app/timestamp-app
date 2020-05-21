@@ -13,17 +13,17 @@ from . import generator
 
 
 # pylint: disable=W0702
-def main(records_json, context: func.Context):
+def main(recordsjson, context: func.Context):
     """
     This function reads the data from the table and converts it into a html page
-    :param records_json:
+    :param recordsjson:
     :param context:
     :return:
     """
     logging.info('HTML Generator function processed a request.')
 
     try:
-        records = json.loads(records_json)
+        records = json.loads(recordsjson)
     except:
         logging.error('Error reading records.')
         return func.HttpResponse("Error reading records", status_code=500)
