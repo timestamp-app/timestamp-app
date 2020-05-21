@@ -80,7 +80,7 @@ def main(req: func.HttpRequest, storageout: func.Out[str]) -> func.HttpResponse:
         payload = {'code': os.getenv("HTMLGENERATOR_KEY")}
         requests.get(gen_url, params=payload)
     except requests.exceptions.HTTPError as err:
-        return handle_error("Request Failed: Invalid response code from html generator: %s", err)
+        return handle_error("Request Failed: Invalid response code from html generator: " + err)
     except:
         return handle_error("Request Failed: Couldnt trigger html generator")
 
