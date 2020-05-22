@@ -11,5 +11,6 @@ class TestDataInput(unittest.TestCase):
         self.params = {"code": os.getenv("FUNCTION_KEY")}
 
     def test_healthcheck(self):
-        r = requests.get(self.url, params=self.params)
+        healthcheck_url = self.url + '/healthcheck'
+        r = requests.get(healthcheck_url, params=self.params)
         self.assertEqual(200, r.status_code)
