@@ -9,6 +9,12 @@
       "direction": "in"
     },
     {
+      "name": "timer",
+      "type": "timerTrigger",
+      "direction": "in",
+      "schedule": "0 23 * * * *"
+    },
+    {
       "authLevel": "function",
       "type": "httpTrigger",
       "direction": "in",
