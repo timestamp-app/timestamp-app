@@ -16,8 +16,8 @@ from . import generator
 def main(recordsjson, context: func.Context):
     """
     This function reads the data from the table and converts it into a html page
-    :param recordsjson:
-    :param context:
+    :param recordsjson: The json input from the azure table
+    :param context: The context in which the function is run (used to get working directory)
     :return:
     """
     logging.info('HTML Generator function processed a request.')
@@ -48,5 +48,3 @@ def main(recordsjson, context: func.Context):
     except:
         logging.error('Error writing html.')
         return func.HttpResponse("Error writing html", status_code=500)
-
-    return func.HttpResponse("Success")
