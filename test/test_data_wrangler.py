@@ -32,7 +32,16 @@ class TestDataWrangler(TestCase):
         self.assertEqual(self.wrangler.data, expected_data)
 
     def test_format_time(self):
-        self.fail()
+
+        expected_data = {
+            'lat': '57.513195',
+            'long': '3.8307557',
+            'time': '2020/04/27 21:28'
+        }
+
+        self.wrangler.format_time()
+
+        self.assertEqual(self.wrangler.data, expected_data)
 
     def test_write_to_table(self):
         self.fail()
