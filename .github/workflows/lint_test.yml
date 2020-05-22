@@ -1,7 +1,10 @@
-name: Lint Test
+name: Lint Test Deploy
 
 on:
   - push
+
+env:
+  AZURE_FUNCTIONAPP_NAME: devduck
 
 jobs:
   lint-and-test:
@@ -20,3 +23,27 @@ jobs:
       run: make lint
     - name: Test
       run: make test
+  deploy:
+    if: ${{ github.ref == "dev" }}
+    needs:
+      - lint-and-test
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set up Python 3.8
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.8
+      - name: Install dependencies
+        shell: bash
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+      - name: Run Azure Functions Action
+        uses: Azure/functions-action@v1
+        id: fa
+        with:
+          app-name: ${{ env.AZURE_FUNCTIONAPP_NAME }}
+          package: ${{ env.AZURE_FUNCTIONAPP_PACKAGE_PATH }}
+          publish-profile: ${{ secrets.DEV_PUBLISH_PROFILE }}
+
