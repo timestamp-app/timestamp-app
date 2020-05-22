@@ -20,3 +20,12 @@ class TestMain(unittest.TestCase):
 
         # Assert
         self.assertEqual(resp.get_body(), b'Requires JSON input')
+
+    def test_healthcheck(self):
+        req = func.HttpRequest(method='POST', body=None, url='/api/datainput/healthcheck')
+        storageOut = func.Out
+
+        resp = main(req, storageOut)
+
+        # Assert
+        self.assertEqual(200, resp.status_code)

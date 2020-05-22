@@ -23,6 +23,9 @@ def main(req: func.HttpRequest, storageout: func.Out[str]) -> func.HttpResponse:
     """
     logging.info('Function processed a request.')
 
+    if req.url == '/api/datainput/healthcheck':
+        return func.HttpResponse("Healthy")
+
     # Get Input
     try:
         req_body = req.get_json()
