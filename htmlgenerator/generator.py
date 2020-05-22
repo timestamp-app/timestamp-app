@@ -8,7 +8,7 @@ from jinja2 import Environment, FileSystemLoader
 from plotly.offline import plot
 
 
-class Generator():
+class Generator:
     """
     This class is used to generate the plots and html
     """
