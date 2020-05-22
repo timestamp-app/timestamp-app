@@ -12,16 +12,7 @@
       "name": "timer",
       "type": "timerTrigger",
       "direction": "in",
-      "schedule": "0 23 * * * *"
-    },
-    {
-      "authLevel": "function",
-      "type": "httpTrigger",
-      "direction": "in",
-      "name": "req",
-      "methods": [
-        "get"
-      ]
+      "schedule": "0 0 23 * * *"
     },
     {
       "type": "http",
