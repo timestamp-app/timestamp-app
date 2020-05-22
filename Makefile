@@ -8,7 +8,7 @@ lint:
 
 .PHONY: test
 test:
-	python -m unittest
+	python -m unittest test/test_*
 
 .PHONY: int_test
 int_test:
