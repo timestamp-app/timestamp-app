@@ -1,5 +1,6 @@
 import json
 from unittest import TestCase
+
 from freezegun import freeze_time
 from mock import patch
 
@@ -18,7 +19,6 @@ class TestDataWrangler(TestCase):
     @patch('datainput.data_wrangler.uuid4', return_value='1f83f6a2-3841-45da-8129-98de28ce7b74')
     @freeze_time("2012-01-01")
     def test_add_key_values(self, uuid4):
-
         expected_data = {
             'PartitionKey': '2012',
             'RowKey': '1f83f6a2-3841-45da-8129-98de28ce7b74',
@@ -32,7 +32,6 @@ class TestDataWrangler(TestCase):
         self.assertEqual(self.wrangler.data, expected_data)
 
     def test_format_time(self):
-
         expected_data = {
             'lat': '57.513195',
             'long': '3.8307557',
@@ -42,6 +41,3 @@ class TestDataWrangler(TestCase):
         self.wrangler.format_time()
 
         self.assertEqual(self.wrangler.data, expected_data)
-
-    def test_write_to_table(self):
-        self.fail()
