@@ -14,10 +14,7 @@ The json will contain the current date/time and the latitude/longatude.
 ### DataInput function
 The datainput function takes the json from the IFTTT app, formats it, and writes
 it to a table in the storage account.  
-It will then trigger the generatehtml function.  
-
-In order for it to connect to the html generator function it needs to be 
-provided the function key in a environment variable called `HTMLGENERATOR_KEY`.
+It will then trigger the generatehtml function.
 
 It also needs a environment variable called `WIREPUSHER_ID` to make api calls 
 to [wirepusher](https://wirepusher.com/)
