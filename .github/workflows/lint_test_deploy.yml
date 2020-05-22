@@ -24,7 +24,7 @@ jobs:
     - name: Test
       run: make test
   deploy:
-    if: ${{ GITHUB_REF##*/ == 'dev' }}
+    if: ${{ github.ref == 'refs/heads/dev' }}
     needs:
       - lint-and-test
     runs-on: ubuntu-latest
