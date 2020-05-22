@@ -10,6 +10,10 @@ lint:
 test:
 	python -m unittest
 
+.PHONY: int_test
+int_test:
+	python -m unittest int_test/test_*
+
 .PHONY: local
 local:
 	func start
