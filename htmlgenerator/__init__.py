@@ -26,7 +26,6 @@ def main(recordsjson, context: func.Context):
         records = json.loads(recordsjson)
     except:
         logging.error('Error reading records.')
-        return func.HttpResponse("Error reading records", status_code=500)
 
     try:
         working_directory = context.function_directory
@@ -36,7 +35,6 @@ def main(recordsjson, context: func.Context):
         html = gen.make_html(working_directory)
     except:
         logging.error('Error making html.')
-        return func.HttpResponse("Error making html", status_code=500)
 
     try:
         content_settings = ContentSettings(content_type="text/html")
@@ -47,4 +45,3 @@ def main(recordsjson, context: func.Context):
         blob_client.upload_blob(html, overwrite=True, content_settings=content_settings)
     except:
         logging.error('Error writing html.')
-        return func.HttpResponse("Error writing html", status_code=500)
