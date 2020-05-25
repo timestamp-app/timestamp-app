@@ -7,7 +7,7 @@ import requests
 class TestDataInput(unittest.TestCase):
 
     def setUp(self) -> None:
-        self.url = "devduck.azurewebsites.net/api/datainput"
+        self.url = "https://devduck.azurewebsites.net/api/datainput"
         self.params = {"code": os.getenv("FUNCTION_KEY")}
 
     def test_healthcheck(self):
