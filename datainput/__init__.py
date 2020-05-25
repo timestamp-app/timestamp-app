@@ -21,7 +21,7 @@ def main(req: func.HttpRequest, storageout: func.Out[str]) -> func.HttpResponse:
     """
     logging.info('Function processed a request.')
 
-    if req.url == '/api/datainput/healthcheck':
+    if req.route_params.get('health') == 'healthcheck':
         return func.HttpResponse("Healthy")
 
     # Get Input
