@@ -5,7 +5,7 @@ on:
 
 env:
   AZURE_FUNCTIONAPP_NAME: devduck
-  AZURE_FUNCTIONAPP_PACKAGE_PATH: '.'
+  AZURE_FUNCTIONAPP_PACKAGE_PATH: '__app__'
 
 jobs:
   lint-test-deploy:
