@@ -1,12 +1,6 @@
-# Prod
 azure-functions
 azure-storage-blob
 requests
 plotly
 pandas
 jinja2
-
-# Dev
-#pylint
-#freezegun
-#mock
