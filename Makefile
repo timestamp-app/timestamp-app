@@ -15,13 +15,13 @@ int_test:
 
 .PHONY: local
 local:
-	func start
+	cd __app__ && func start
 
 .PHONY: dev
 dev:
-	func azure functionapp publish $(DEV_ENV)
+	cd __app__ && func azure functionapp publish $(DEV_ENV)
 
 .PHONY: prod
 prod:
-	func azure functionapp publish $(PROD_ENV)
+	cd __app__ && func azure functionapp publish $(PROD_ENV)
 
