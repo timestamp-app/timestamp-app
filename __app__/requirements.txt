@@ -7,6 +7,6 @@ pandas
 jinja2
 
 # Dev
-pylint
-freezegun
-mock
+#pylint
+#freezegun
+#mock

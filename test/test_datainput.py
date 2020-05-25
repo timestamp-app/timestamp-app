@@ -2,7 +2,7 @@ import unittest
 
 import azure.functions as func
 
-from datainput import main
+from __app__.datainput import main
 
 
 class TestMain(unittest.TestCase):

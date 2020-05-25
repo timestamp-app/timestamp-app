@@ -6,10 +6,9 @@ from datetime import datetime
 
 import azure.functions as func
 
-from helpers.error_handling import handle_error
-from helpers.notifications import push_notification
-# pylint: disable=E0402
-from .data_wrangler import DataWrangler
+from __app__.datainput.data_wrangler import DataWrangler
+from __app__.helpers.error_handling import handle_error
+from __app__.helpers.notifications import push_notification
 
 
 # pylint: disable=E1136,W0702

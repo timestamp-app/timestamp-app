@@ -1,10 +1,9 @@
-MODULES = datainput htmlgenerator helpers
 DEV_ENV ?= devduck
 PROD_ENV ?= wolfduck
 
 .PHONY: lint
 lint:
-	pylint $(MODULES)
+	pylint __app__
 
 .PHONY: test
 test:
