@@ -6,6 +6,7 @@ from datetime import datetime
 
 import azure.functions as func
 
+# pylint: disable=E0402
 from .data_wrangler import DataWrangler
 from ..helpers.error_handling import handle_error
 from ..helpers.notifications import push_notification
