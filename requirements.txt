@@ -4,3 +4,4 @@ pylint
 freezegun
 mock
 yamllint
+requests
