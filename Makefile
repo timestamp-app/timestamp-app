@@ -1,9 +1,16 @@
 DEV_ENV ?= devduck
 PROD_ENV ?= wolfduck
 
-.PHONY: lint
-lint:
+.PHONY: pylint
+pylint:
 	pylint __app__
+
+.PHONY: yamllint
+yamllint:
+	yamllint .
+
+.PHONY: lint
+lint: pylint yamllint
 
 .PHONY: test
 test:
