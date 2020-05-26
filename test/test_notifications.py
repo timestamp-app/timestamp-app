@@ -3,7 +3,7 @@ from unittest import TestCase
 
 from mock import patch, call
 
-from helpers.notifications import push_notification
+from __app__.helpers.notifications import push_notification
 
 
 class Test(TestCase):

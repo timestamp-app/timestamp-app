@@ -9,7 +9,7 @@ import os
 import azure.functions as func
 from azure.storage.blob import BlobServiceClient, ContentSettings
 
-from . import generator
+from  __app__.htmlgenerator.generator import Generator
 
 
 # pylint: disable=W0702
@@ -30,7 +30,7 @@ def main(recordsjson, context: func.Context):
     try:
         working_directory = context.function_directory
 
-        gen = generator.Generator(records)
+        gen = Generator(records)
         gen.make_plots()
         html = gen.make_html(working_directory)
     except:

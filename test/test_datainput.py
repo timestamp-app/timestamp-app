@@ -2,7 +2,7 @@ import unittest
 
 import azure.functions as func
 
-from datainput import main
+from __app__.datainput import main
 
 
 class TestMain(unittest.TestCase):
@@ -22,7 +22,10 @@ class TestMain(unittest.TestCase):
         self.assertEqual(resp.get_body(), b'Requires JSON input')
 
     def test_healthcheck(self):
-        req = func.HttpRequest(method='POST', body=None, url='/api/datainput/healthcheck')
+        req = func.HttpRequest(method='GET',
+                               body=None,
+                               url='/api/datainput/healthcheck',
+                               route_params={'health': 'healthcheck'})
         storageOut = func.Out
 
         resp = main(req, storageOut)

@@ -1,12 +1,5 @@
-# Prod
-azure-functions
-azure-storage-blob
-requests
-plotly
-pandas
-jinja2
-
-# Dev
+# These are just the dev requirements
+# The app requirements can be found in __app__/requirements.txt
 pylint
 freezegun
 mock

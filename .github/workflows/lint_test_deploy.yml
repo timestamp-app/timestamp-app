@@ -5,7 +5,7 @@ on:
 
 env:
   AZURE_FUNCTIONAPP_NAME: devduck
-  AZURE_FUNCTIONAPP_PACKAGE_PATH: '.'
+  AZURE_FUNCTIONAPP_PACKAGE_PATH: '__app__'
 
 jobs:
   lint-test-deploy:
@@ -19,6 +19,7 @@ jobs:
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
+          pip install -r __app__/requirements.txt
           pip install -r requirements.txt
       - name: Lint
         run: make lint

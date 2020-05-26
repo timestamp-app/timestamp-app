@@ -4,7 +4,7 @@ from unittest import TestCase
 from freezegun import freeze_time
 from mock import patch
 
-from datainput import DataWrangler
+from __app__.datainput import DataWrangler
 
 
 class TestDataWrangler(TestCase):
@@ -16,7 +16,7 @@ class TestDataWrangler(TestCase):
         input_data = json.loads(raw_input)
         self.wrangler = DataWrangler(data=input_data)
 
-    @patch('datainput.data_wrangler.uuid4', return_value='1f83f6a2-3841-45da-8129-98de28ce7b74')
+    @patch('__app__.datainput.data_wrangler.uuid4', return_value='1f83f6a2-3841-45da-8129-98de28ce7b74')
     @freeze_time("2012-01-01")
     def test_add_key_values(self, uuid4):
         expected_data = {

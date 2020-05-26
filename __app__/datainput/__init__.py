@@ -2,15 +2,13 @@
 This module is responsible for ingesting data and writing it to storage
 """
 import logging
-import os
 from datetime import datetime
 
 import azure.functions as func
-import requests
 
-from datainput.data_wrangler import DataWrangler
-from helpers.error_handling import handle_error
-from helpers.notifications import push_notification
+from __app__.datainput.data_wrangler import DataWrangler
+from __app__.helpers.error_handling import handle_error
+from __app__.helpers.notifications import push_notification
 
 
 # pylint: disable=E1136,W0702
@@ -23,7 +21,7 @@ def main(req: func.HttpRequest, storageout: func.Out[str]) -> func.HttpResponse:
     """
     logging.info('Function processed a request.')
 
-    if req.url == '/api/datainput/healthcheck':
+    if req.route_params.get('health') == 'healthcheck':
         return func.HttpResponse("Healthy")
 
     # Get Input

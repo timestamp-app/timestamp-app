@@ -5,7 +5,7 @@ import logging
 
 import azure.functions as func
 
-from helpers.notifications import push_notification
+from __app__.helpers.notifications import push_notification
 
 
 def handle_error(message, code=500):
