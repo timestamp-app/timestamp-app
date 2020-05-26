@@ -6,6 +6,7 @@ on:
 env:
   AZURE_FUNCTIONAPP_NAME: devduck
   AZURE_FUNCTIONAPP_PACKAGE_PATH: '__app__'
+  ENV: 'dev'
 
 jobs:
   lint-test-deploy:

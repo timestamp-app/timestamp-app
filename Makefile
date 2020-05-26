@@ -24,4 +24,3 @@ dev:
 .PHONY: prod
 prod:
 	cd __app__ && func azure functionapp publish $(PROD_ENV)
-
