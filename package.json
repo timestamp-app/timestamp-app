@@ -5,11 +5,12 @@
   "scripts": {
     "local": "func start",
     "lint": "npx eslint DataIngestion/*.js",
-    "test": "",
+    "test": "jest",
     "deploy": "func azure functionapp publish"
   },
   "author": "Tom Reilly",
   "devDependencies": {
-    "eslint": "^7.10.0"
+    "eslint": "^7.10.0",
+    "jest": "^26.4.2"
   }
 }
