@@ -1,6 +1,0 @@
-azure-functions
-azure-storage-blob
-requests
-plotly
-pandas
-jinja2

@@ -1,0 +1,11 @@
+{
+  "name": "timestamp_data_ingestor",
+  "version": "0.0.1",
+  "description": "",
+  "scripts" : {
+    "local": "func start",
+    "test": "",
+    "deploy": "func azure functionapp publish"
+  },
+  "author": "Tom Reilly"
+}
