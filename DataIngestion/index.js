@@ -16,6 +16,7 @@ module.exports = async function (context, req) {
     } else if (req.method == 'POST') {
         // Data Input
         wrangler.add_key_values(req.body)
+        wrangler.format_time(req.body)
 
         notification.notify(
             context, 
