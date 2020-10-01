@@ -6,6 +6,6 @@ module.exports = {
 
         axios.post(`https://wirepusher.com/send?id=${id}&title=${title}&message=${message}&type=${status}`)
 
-        context.log('Sent Notification');
+        context.log('Sent notification');
     }
 }

@@ -1,10 +1,11 @@
 module.exports = async function (context, req) {
-    context.log('datainput function processed a request');
     const notification = require('./notification.js')
     const wrangler = require('./data_wrangler.js')
 
     if (req.method == 'GET' && req.params.health == 'health') {
         // Healthcheck
+        context.log.verbose('Healthcheck request recieved',);
+
         const pjson = require('../package.json');
         const response = JSON.stringify({
             status: 'Healthy',
@@ -15,6 +16,8 @@ module.exports = async function (context, req) {
         };
     } else if (req.method == 'POST') {
         // Data Input
+        context.log.info('POST request recieved');
+
         wrangler.add_key_values(req.body)
         wrangler.format_time(req.body)
 
@@ -25,5 +28,6 @@ module.exports = async function (context, req) {
         context.res = {
             body: 'Success'
         };
+        context.log.info('POST request success');
     }
 }
