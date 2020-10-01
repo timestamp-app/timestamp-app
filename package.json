@@ -4,7 +4,7 @@
   "description": "",
   "scripts": {
     "local": "func start",
-    "lint": "npx eslint DataIngestion/*.js",
+    "lint": "npx eslint **.js",
     "test": "jest",
     "deploy": "func azure functionapp publish"
   },
