@@ -18,12 +18,15 @@ describe('wrangler tests', () => {
             long: '3.8307557'
         }
 
+        let real_date = Date.bind(global.Date)
         let mock_date = new Date('2012')
-        global.Date = jest.fn(() => mock_date)
+        global.Date = jest.fn(() => mock_date) // Mock date
 
         wrangler.add_key_values(input_data)
+
+        global.Date = real_date // Set date back
     
-        expect(input_data).toBe(expected_data);
+        expect(input_data).toEqual(expected_data);
     })
 
     test('formatting the timestamp', () => {
@@ -35,6 +38,6 @@ describe('wrangler tests', () => {
     
         wrangler.format_time(input_data)
     
-        expect(input_data).toBe(expected_data);
+        expect(input_data).toEqual(expected_data);
     })
 })
