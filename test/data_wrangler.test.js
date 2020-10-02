@@ -18,6 +18,9 @@ describe('wrangler tests', () => {
             long: '3.8307557'
         }
 
+        let mock_date = new Date('2012')
+        global.Date = jest.fn(() => mock_date)
+
         wrangler.add_key_values(input_data)
     
         expect(input_data).toBe(expected_data);
