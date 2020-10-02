@@ -17,7 +17,7 @@ describe('wrangler tests', () => {
             lat: '57.513195',
             long: '3.8307557'
         }
-    
+
         wrangler.add_key_values(input_data)
     
         expect(input_data).toBe(expected_data);
