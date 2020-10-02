@@ -5,7 +5,7 @@
   "scripts": {
     "local": "func start",
     "lint": "npx eslint **.js",
-    "test": "jest",
+    "test": "jest --coverage",
     "deploy": "func azure functionapp publish"
   },
   "author": "Tom Reilly",

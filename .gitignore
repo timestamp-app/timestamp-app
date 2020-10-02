@@ -45,3 +45,6 @@ __pycache__/
 # Dev stuff
 *.ipynb
 .idea
+
+# Custom
+coverage/
