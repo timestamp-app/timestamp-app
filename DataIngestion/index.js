@@ -24,9 +24,15 @@ module.exports = async function (context, req) {
         notification.notify(
             context, 
             'Success', 
-            `Record added at: ${new Date().toUTCString()}`)
+            `Record added at: ${new Date().toUTCString()}`
+            )
+        
+        const response = JSON.stringify({
+            status: 'Success',
+            record: req.body
+        })
         context.res = {
-            body: 'Success'
+            body: response
         };
         context.log.info('POST request success');
     }
