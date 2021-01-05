@@ -5,8 +5,8 @@ provider "azurerm" {
 provider "cloudflare" {}
 
 locals {
-  name           = "timestampcollector"
-  dns_name_short = "input.timestamp"
+  name           = "timestampcollector${var.env}"
+  dns_name_short = "input.timestamp.${var.env}"
   dns_name_full  = "${local.dns_name_short}.treilly.co.uk"
   dns_zone_id    = "015a73c5122b5f3610eed490d5208827"
 }
