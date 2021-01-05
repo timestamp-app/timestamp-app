@@ -58,5 +58,5 @@ resource "azurerm_app_service_certificate" "this" {
   name                = local.name
   resource_group_name = azurerm_resource_group.this.name
   location            = azurerm_resource_group.this.location
-  pfx_blob            = tls_self_signed_cert.this.cert_pem
+  pfx_blob            = base64encode(tls_self_signed_cert.this.cert_pem)
 }
