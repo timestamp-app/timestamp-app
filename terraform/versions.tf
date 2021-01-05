@@ -8,6 +8,10 @@ terraform {
       source  = "cloudflare/cloudflare"
       version = "~> 2.14.0"
     }
+    tls = {
+      source  = "hashicorp/tls"
+      version = "~> 3.0.0"
+    }
   }
   required_version = ">= 0.13"
 }
