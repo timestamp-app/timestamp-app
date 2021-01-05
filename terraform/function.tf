@@ -6,7 +6,7 @@ resource "azurerm_app_service_plan" "this" {
 
   sku {
     tier = "Dynamic"
-    size = "Y1"
+    size = "F1"
   }
 }
 
