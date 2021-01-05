@@ -1,4 +1,7 @@
 # Timestamp
+[![TerraformCloud](https://img.shields.io/badge/Terraform-Cloud-blue)](https://app.terraform.io/app/timestamp-app/workspaces/timestamp-app/runs)
+[![SonarCloud](https://img.shields.io/badge/Sonar-Cloud-orange)](https://sonarcloud.io/project/configuration?id=treilly94_timestamp-app)
+
 
 This project is madeup of two Azure functions and a IFTTT app.  
 It also generates a static website that can be hosted by from a azure storage 
