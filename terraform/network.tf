@@ -32,3 +32,9 @@ resource "azurerm_app_service_certificate" "this" {
   location            = azurerm_resource_group.this.location
   key_vault_secret_id = azurerm_key_vault_certificate.this.id
 }
+
+resource "azurerm_app_service_certificate_binding" "this" {
+  hostname_binding_id = azurerm_app_service_custom_hostname_binding.this.id
+  certificate_id      = azurerm_app_service_certificate.this.id
+  ssl_state           = "SniEnabled"
+}
