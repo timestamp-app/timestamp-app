@@ -15,6 +15,7 @@ resource "azurerm_resource_group" "this" {
   location = "uksouth"
 }
 
+// Storage
 resource "azurerm_storage_account" "this" {
   name                     = local.name
   resource_group_name      = azurerm_resource_group.this.name
@@ -23,6 +24,7 @@ resource "azurerm_storage_account" "this" {
   account_replication_type = "LRS"
 }
 
+// Function
 resource "azurerm_app_service_plan" "this" {
   name                = local.name
   location            = azurerm_resource_group.this.location
@@ -44,6 +46,7 @@ resource "azurerm_function_app" "this" {
   storage_account_access_key = azurerm_storage_account.this.primary_access_key
 }
 
+// DNS
 resource "cloudflare_record" "cname" {
   zone_id = local.dns_zone_id
   name    = local.dns_name
@@ -58,4 +61,14 @@ resource "cloudflare_record" "txt" {
   value   = azurerm_function_app.this.custom_domain_verification_id
   type    = "TXT"
   ttl     = 3600
+}
+
+resource "azurerm_app_service_custom_hostname_binding" "this" {
+  depends_on = [
+    cloudflare_record.cname,
+    cloudflare_record.txt
+  ]
+  hostname            = "${local.dns_name}.treilly.co.uk"
+  app_service_name    = azurerm_function_app.this.name
+  resource_group_name = azurerm_resource_group.this.name
 }
