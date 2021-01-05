@@ -26,37 +26,9 @@ resource "azurerm_app_service_custom_hostname_binding" "this" {
 }
 
 // Cert
-resource "tls_private_key" "this" {
-  algorithm = "ECDSA"
-}
-
-resource "tls_self_signed_cert" "this" {
-  key_algorithm   = tls_private_key.this.algorithm
-  private_key_pem = tls_private_key.this.private_key_pem
-
-  validity_period_hours = 12
-
-  early_renewal_hours = 3
-
-  allowed_uses = [
-    "key_encipherment",
-    "digital_signature",
-    "server_auth",
-  ]
-
-  dns_names = [
-    local.dns_name_full
-  ]
-
-  subject {
-    common_name  = local.dns_name_full
-    organization = local.name
-  }
-}
-
 resource "azurerm_app_service_certificate" "this" {
   name                = local.name
   resource_group_name = azurerm_resource_group.this.name
   location            = azurerm_resource_group.this.location
-  pfx_blob            = base64encode(tls_self_signed_cert.this.cert_pem)
+  key_vault_secret_id = azurerm_key_vault_certificate.this.id
 }
