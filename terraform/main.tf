@@ -3,7 +3,7 @@ provider "azurerm" {
 }
 
 locals {
-    name = "timestampcollector"
+  name = "timestampcollector"
 }
 
 resource "azurerm_resource_group" "this" {
