@@ -2,8 +2,12 @@ provider "azurerm" {
   features {}
 }
 
+provider "cloudflare" {}
+
 locals {
-  name = "timestampcollector"
+  name        = "timestampcollector"
+  dns_name    = "input.timestamp"
+  dns_zone_id = "015a73c5122b5f3610eed490d5208827"
 }
 
 resource "azurerm_resource_group" "this" {
@@ -38,4 +42,20 @@ resource "azurerm_function_app" "this" {
   app_service_plan_id        = azurerm_app_service_plan.this.id
   storage_account_name       = azurerm_storage_account.this.name
   storage_account_access_key = azurerm_storage_account.this.primary_access_key
+}
+
+resource "cloudflare_record" "cname" {
+  zone_id = local.dns_zone_id
+  name    = local.dns_name
+  value   = azurerm_function_app.this.default_hostname
+  type    = "CNAME"
+  ttl     = 3600
+}
+
+resource "cloudflare_record" "txt" {
+  zone_id = local.dns_zone_id
+  name    = "asuid.${local.dns_name}"
+  value   = azurerm_function_app.this.custom_domain_verification_id
+  type    = "TXT"
+  ttl     = 3600
 }
