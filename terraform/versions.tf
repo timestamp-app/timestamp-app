@@ -8,6 +8,10 @@ terraform {
       source  = "cloudflare/cloudflare"
       version = "~> 2.14.0"
     }
+    acme = {
+      source  = "vancluever/acme"
+      version = "2.0.0"
+    }
   }
   required_version = ">= 0.13"
 }
