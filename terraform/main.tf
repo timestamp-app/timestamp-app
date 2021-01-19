@@ -7,7 +7,7 @@ provider "cloudflare" {
 }
 
 provider "acme" {
-  server_url = local.letsencrypt_url
+  server_url = "https://acme-staging-v02.api.letsencrypt.org/directory"
 }
 
 locals {
