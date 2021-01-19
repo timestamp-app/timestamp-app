@@ -2,7 +2,9 @@ provider "azurerm" {
   features {}
 }
 
-provider "cloudflare" {}
+provider "cloudflare" {
+  api_token = var.cloudflare_token
+}
 
 provider "acme" {
   server_url = "https://acme-staging-v02.api.letsencrypt.org/directory"
