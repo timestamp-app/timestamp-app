@@ -22,11 +22,11 @@ module.exports = async function (context, req) {
         wrangler.format_time(req.body)
 
         notification.notify(
-            context, 
-            'Success', 
+            context,
+            'Success',
             `Record added at: ${new Date().toUTCString()}`
             )
-        
+
         const response = JSON.stringify({
             status: 'Success',
             record: req.body

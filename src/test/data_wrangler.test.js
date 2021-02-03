@@ -3,12 +3,12 @@ const fs = require('fs');
 describe('wrangler tests', () => {
     let wrangler = require('../DataIngestion/data_wrangler.js')
     let input_data
-    
+
     beforeEach(() => {
         let rawdata = fs.readFileSync('./test/mock_input.json')
         input_data = JSON.parse(rawdata)
     })
-    
+
     test('add key values', () => {
         let expected_data = {
             PartitionKey: '2012',
@@ -25,7 +25,7 @@ describe('wrangler tests', () => {
         wrangler.add_key_values(input_data)
 
         global.Date = real_date // Set date back
-    
+
         expect(input_data).toEqual(expected_data);
     })
 
@@ -35,9 +35,9 @@ describe('wrangler tests', () => {
             lat: '57.513195',
             long: '3.8307557'
         }
-    
+
         wrangler.format_time(input_data)
-    
+
         expect(input_data).toEqual(expected_data);
     })
 })

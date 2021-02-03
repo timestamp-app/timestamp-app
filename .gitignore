@@ -49,6 +49,6 @@ __pycache__/
 # Custom
 coverage/
 
-# Terraform 
+# Terraform
 .terraform/
 *.tfstate*
