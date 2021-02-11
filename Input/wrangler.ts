@@ -1,11 +1,11 @@
 import { v4 } from 'uuid';
 
 interface Record {
-    PartitionKey: number;
-    RowKey: string;
-    Lat: string;
-    Long: string;
-    DateTime: string;
+    PartitionKey?: number;
+    RowKey?: string;
+    Lat?: string;
+    Long?: string;
+    DateTime?: string;
 }
 
 function add_key_values(data: Record) {
@@ -14,4 +14,4 @@ function add_key_values(data: Record) {
     return data;
 }
 
-export { add_key_values };
+export { Record, add_key_values };
