@@ -8,10 +8,10 @@ interface Record {
     DateTime?: string;
 }
 
-function add_key_values(data: Record): Record {
+function add_key_values(data: Record): void {
     data.PartitionKey = new Date().getFullYear();
     data.RowKey = v4();
-    return data;
 }
+
 
 export { Record, add_key_values };

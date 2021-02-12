@@ -13,12 +13,17 @@ afterAll(() => {
 });
 
 test("add keys", () => {
+    // Test Data
     const input: Record = {Lat: "44.4", Long: "66.6"};
     const expected: Record = { ...input };
     expected.PartitionKey = 1990;
     expected.RowKey = "12345j";
 
+    // Mocks
     v4.mockReturnValue("12345j");
 
-    expect(add_key_values(input)).toEqual(expected);
+    // Run Function
+    add_key_values(input)
+
+    expect(input).toEqual(expected);
 })
