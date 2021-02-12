@@ -8,6 +8,7 @@ const httpTrigger: AzureFunction = async function (context: Context, req: HttpRe
 
     add_key_values(req.body);
     format_datetime(req.body);
+    context.bindings.tableOut.push(req.body)
     wp.notify("Success", "Record added")
 
     context.res = {
