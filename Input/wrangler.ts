@@ -8,7 +8,7 @@ interface Record {
     DateTime?: string;
 }
 
-function add_key_values(data: Record) {
+function add_key_values(data: Record): Record {
     data.PartitionKey = new Date().getFullYear();
     data.RowKey = v4();
     return data;
