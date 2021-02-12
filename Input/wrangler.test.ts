@@ -16,7 +16,7 @@ test("add keys", () => {
 
     jest.useFakeTimers("modern");
     jest.setSystemTime(new Date(1990, 1, 1));
-    v4.mockImplementation(() => "12345j");
+    v4.mockImplementationOnce(() => "12345j");
 
     add_key_values(input)
 
