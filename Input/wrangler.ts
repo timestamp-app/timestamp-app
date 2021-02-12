@@ -1,4 +1,6 @@
 import { v4 } from 'uuid';
+import * as moment from "moment"
+import { Moment } from "moment"
 
 interface Record {
     PartitionKey?: number;
@@ -13,5 +15,11 @@ function add_key_values(data: Record): void {
     data.RowKey = v4();
 }
 
+function format_datetime(data: Record): void {
+    const inFmt = "MMMM DD, YYYY at hh:mmA";
+    const outFmt = "YYYY/MM/DD HH:mm";
+    const parsedDateTime: Moment = moment(data.DateTime, inFmt);
+    data.DateTime = parsedDateTime.format(outFmt)
+}
 
-export { Record, add_key_values };
+export { Record, add_key_values, format_datetime };
