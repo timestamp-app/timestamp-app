@@ -1,4 +1,7 @@
 import { Record, add_key_values } from "./wrangler";
+import { v4 } from "uuid";
+
+jest.mock("uuid");
 
 beforeAll(() => {
     jest.useFakeTimers("modern");
@@ -14,6 +17,8 @@ test("add keys", () => {
     const expected: Record = { ...input };
     expected.PartitionKey = 1990;
     expected.RowKey = "12345j";
+
+    v4.mockReturnValue("12345j");
 
     expect(add_key_values(input)).toEqual(expected);
 })
