@@ -11,6 +11,8 @@
     "start": "npm-run-all --parallel start:host watch",
     "test": "jest",
     "deploy": "npm run build:production && func azure functionapp publish",
+    "deploy:dev": "npm run deploy timestampcollectordev --typescript",
+    "deploy:prod": "npm run deploy timestampcollectorprod --typescript",
     "logs": "func azure functionapp logstream",
     "clean": "rm -rf ./dist ./node_modules"
   },
