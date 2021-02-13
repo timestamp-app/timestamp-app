@@ -1,5 +1,4 @@
 {
-  "scriptFile": "__init__.py",
   "bindings": [
     {
       "authLevel": "function",
@@ -7,20 +6,22 @@
       "direction": "in",
       "name": "req",
       "methods": [
+        "get",
         "post"
       ]
     },
     {
-      "name": "storageOut",
-      "type": "table",
       "tableName": "records",
       "connection": "AzureWebJobsStorage",
+      "name": "tableOut",
+      "type": "table",
       "direction": "out"
     },
     {
       "type": "http",
       "direction": "out",
-      "name": "$return"
+      "name": "res"
     }
-  ]
+  ],
+  "scriptFile": "../dist/Input/index.js"
 }
