@@ -11,7 +11,8 @@
     "start": "npm-run-all --parallel start:host watch",
     "test": "jest",
     "deploy": "npm run build:production && func azure functionapp publish",
-    "logs": "func azure functionapp logstream"
+    "logs": "func azure functionapp logstream",
+    "clean": "rm -rf ./dist ./node_modules"
   },
   "description": "",
   "devDependencies": {
