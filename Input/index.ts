@@ -6,9 +6,13 @@ const httpTrigger: AzureFunction = async function (context: Context, req: HttpRe
     context.log('Input Triggered');
     const wp = new Wirepusher(process.env.WIREPUSHER_ID);
 
+    context.log('Adding Keys');
     add_key_values(req.body);
+    context.log('Formatting DateTime');
     format_datetime(req.body);
+    context.log('Writing to Table');
     context.bindings.tableOut.push(req.body)
+    context.log('Notifying');
     wp.notify("Success", "Record added")
 
     context.res = {
