@@ -5,6 +5,7 @@ import { Wirepusher } from "./wirepusher"
 const httpTrigger: AzureFunction = async function (context: Context, req: HttpRequest): Promise<void> {
     context.log('Input Triggered');
     const wp = new Wirepusher(process.env.WIREPUSHER_ID);
+    context.bindings.tableOut = [];
 
     context.log('Adding Keys');
     add_key_values(req.body);
