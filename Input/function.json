@@ -1,7 +1,7 @@
 {
   "bindings": [
     {
-      "authLevel": "Function",
+      "authLevel": "function",
       "type": "httpTrigger",
       "direction": "in",
       "name": "req",
@@ -12,7 +12,7 @@
     },
     {
       "tableName": "records",
-      "connection": "MyStorageConnectionAppSetting",
+      "connection": "AzureWebJobsStorage",
       "name": "tableOut",
       "type": "table",
       "direction": "out"

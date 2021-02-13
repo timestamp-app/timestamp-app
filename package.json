@@ -10,7 +10,8 @@
     "start:host": "func start",
     "start": "npm-run-all --parallel start:host watch",
     "test": "jest",
-    "deploy": "func azure functionapp publish"
+    "deploy": "npm run build:production && func azure functionapp publish",
+    "logs": "func azure functionapp logstream"
   },
   "description": "",
   "devDependencies": {
