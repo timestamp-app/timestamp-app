@@ -6,6 +6,7 @@ on:
 
 env:
   APP_NAME: timestampcollectorprod
+  FUNCTIONS_WORKER_RUNTIME": "node"
 
 jobs:
   Deploy:
