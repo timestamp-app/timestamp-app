@@ -1,12 +1,8 @@
 ---
-
 name: Lint Test
 
 on:
   - push
-
-env:
-  FUNCTION_KEY: ${{ secrets.DEV_FUNCTION_KEY }}
 
 jobs:
   lint-test:
