@@ -7,7 +7,11 @@ on:
 jobs:
   lint-test:
     runs-on: ubuntu-latest
-    container: docker.pkg.github.com/timestamp-app/build-image/node:latest
+    container:
+      image: docker.pkg.github.com/timestamp-app/build-image/node:latest
+      credentials:
+        username: ${{ github.repository_owner }}
+        password: ${{ secrets.GITHUB_TOKEN }}
     steps:
       - uses: actions/checkout@v2
       - name: Install dependencies
