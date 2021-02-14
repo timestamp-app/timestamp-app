@@ -3,19 +3,19 @@
   "version": "0.0.1",
   "scripts": {
     "lint": "eslint .",
+    "lint:report": "eslint . -f json -o eslint.json",
     "build": "tsc",
     "build:production": "npm run prestart && npm prune --production",
     "watch": "tsc --w",
     "prestart": "npm run build && func extensions install",
     "start:host": "func start",
     "start": "npm-run-all --parallel start:host watch",
-    "test": "jest",
-    "test:coverage": "jest --coverage",
+    "test": "jest --coverage",
     "deploy": "npm run build:production && func azure functionapp publish $npm_package_config_func_app_name --typescript",
     "deploy:dev": "npm run deploy --timestamp-app:func_app_name=timestampcollectordev",
     "deploy:prod": "npm run deploy --timestamp-app:func_app_name=timestampcollectorprod",
     "logs": "func azure functionapp logstream",
-    "clean": "rm -rf ./dist ./node_modules"
+    "clean": "rm -rf ./dist ./node_modules ./coverage ./eslint.json"
   },
   "description": "",
   "devDependencies": {
