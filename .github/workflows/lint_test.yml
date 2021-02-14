@@ -19,7 +19,7 @@ jobs:
       - name: Lint
         run: npm run lint:report
       - name: Test
-        run: npm run test:coverage
+        run: npm run test
       - name: SonarCloud Scan
         uses: SonarSource/sonarcloud-github-action@master
         env:
