@@ -9,17 +9,17 @@ on:
 jobs:
   Deploy:
     runs-on: ubuntu-latest
+    container:
+      image: docker.pkg.github.com/timestamp-app/build-image/node:latest
+      credentials:
+        username: ${{ github.repository_owner }}
+        password: ${{ secrets.GITHUB_TOKEN }}
     steps:
       - uses: actions/checkout@v2
-      - uses: actions/setup-node@v2
-        with:
-          node-version: '12'
       - uses: azure/login@v1
         with:
           creds: ${{ secrets.AZURE_CREDENTIALS }}
       - name: Install dependencies
-        run: |
-          npm i -g azure-functions-core-tools@3 --unsafe-perm true \
-          && npm install
+        run: npm install
       - name: Deploy
         run: npm run deploy:prod
