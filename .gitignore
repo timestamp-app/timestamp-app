@@ -3,3 +3,7 @@ local.settings.json
 
 node_modules
 dist
+
+coverage
+eslint.json
+.scannerwork
