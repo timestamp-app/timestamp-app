@@ -6,6 +6,7 @@ on:
 
 jobs:
   lint-test:
+    runs-on: ubuntu-latest
     container: docker.pkg.github.com/timestamp-app/build-image/node:latest
     steps:
       - uses: actions/checkout@v2
