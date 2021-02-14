@@ -10,6 +10,7 @@
     "start:host": "func start",
     "start": "npm-run-all --parallel start:host watch",
     "test": "jest",
+    "test:coverage": "jest --coverage",
     "deploy": "npm run build:production && func azure functionapp publish $npm_package_config_func_app_name --typescript",
     "deploy:dev": "npm run deploy --timestamp-app:func_app_name=timestampcollectordev",
     "deploy:prod": "npm run deploy --timestamp-app:func_app_name=timestampcollectorprod",
