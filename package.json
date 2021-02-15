@@ -4,6 +4,7 @@
   "scripts": {
     "lint": "eslint .",
     "lint:report": "eslint . -f json -o eslint.json",
+    "sonar": "sonar-scanner -D sonar.branch.name=$(git rev-parse --abbrev-ref HEAD)",
     "build": "tsc",
     "build:production": "npm run prestart && npm prune --production",
     "watch": "tsc --w",
@@ -15,10 +16,9 @@
     "deploy:dev": "npm run deploy --timestamp-app:func_app_name=timestampcollectordev",
     "deploy:prod": "npm run deploy --timestamp-app:func_app_name=timestampcollectorprod",
     "logs": "func azure functionapp logstream",
-    "clean": "rm -rf ./dist ./node_modules ./coverage ./eslint.json ./.scannerwork",
-    "sonar": "sonar-scanner -D sonar.branch.name=$(git rev-parse --abbrev-ref HEAD)"
+    "clean": "rm -rf ./dist ./node_modules ./coverage ./eslint.json ./.scannerwork"
   },
-  "description": "",
+  "description": "A app to format datetime and location data, and write it to storage",
   "devDependencies": {
     "@azure/functions": "^1.0.1-beta1",
     "@types/node": "^14.14.27",
