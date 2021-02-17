@@ -1,6 +1,8 @@
-*.js.map
-*.ts
-.git*
-.vscode
-local.settings.json
-test
+*
+
+!Input
+!package.json
+!package-lock.json
+!host.json
+!dist
+!node_modules
