@@ -1,4 +1,4 @@
-import { Record, add_key_values, format_datetime } from "./wrangler";
+import { Record, add_key_values, format_datetime } from "../../Input/wrangler";
 import { v4 } from "uuid";
 
 jest.mock("uuid");
