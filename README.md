@@ -18,6 +18,9 @@ it to a table in the storage account.
 It also needs a environment variable called `WIREPUSHER_ID` to make api calls
 to [wirepusher](https://wirepusher.com/)
 
+### Output
+The Output function returns the data in the table when queried.
+
 ## Storage Account
 
 ### Table
